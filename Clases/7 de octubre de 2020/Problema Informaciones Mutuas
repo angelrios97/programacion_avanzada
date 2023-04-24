@@ -1,0 +1,13 @@
+Tenemos una lista de frecuencias absolutas de tamaño n.
+Construimos n listas de tamaño n-1 en las que elimino uno de los elementos.
+La lista 0, la lista 1, ..., la lista n.
+En cada lista calcuamos la entropia H=sum_i fi*log_2(fi)
+F1 3 f1 0.03
+F2 5 f2 0.01
+F3 2 f3 0.003
+.  8
+.  1
+.
+Tenemos la H total con todos. Después quitamos los elemntos para calcular las entropias
+
+Informaciones mutuas: H0-H1, H0-H2,... H0-H4. fi son las frecuencias relativas, absolutas entre el total.

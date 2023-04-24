@@ -1,0 +1,19 @@
+variable Deportista SI NO
+padres
+0.1 0.9
+
+variable AlimentaciónEquilibrada SI NO
+padres
+0.4 0.6
+
+variable Fumador SI NO
+padres
+0.4 0.6
+
+variable Hipertensión SI NO
+padres Deportista AlimentaciónEquilibrada
+0.01 0.2 0.25 0.7 0.99 0.8 0.75 0.3
+
+variable Infarto SI NO
+padres Hipertensión Fumador
+0.8 0.6 0.7 0.3 0.2 0.4 0.3 0.7

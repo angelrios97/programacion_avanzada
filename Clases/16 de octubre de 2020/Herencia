@@ -1,0 +1,86 @@
+HERENCIA.
+La herencia resulta en que las clases hijas tengan métodos de las clases madres. EL ORDEN IMPORTA.
+
+class Coche(Vehiculo,Patrimonio):
+    .
+    .
+    .
+
+class Vehiculo(Transporte):
+    .
+    .
+    .
+
+class Patrimonio(Consumo):
+    .
+    .
+    .
+
+Imaginamos que tenemos un objeto c=Coche('Ferrari Testarosa') y ponemos c.precio (un atributo del objeto).
+Primero va a la clase coche y si está el atributo precio. Si sí, no se mira más. Si no, miramos en vehículo, si está, paramos
+de mirar y lo tenemos, si no en transporte.
+Supongamso qeu buscas por Vehículo por arriba y no está. Entonces empezamos por Patrimonio. Si no está en consumo y resuelto y si
+no está, seguimos. Si no aparece en ningún lado, retorna error.
+
+Supongamos ahora que class Vehiculo(Transporte,Consumo) o que la herencia múltiple tenga intersecciones, que alguna
+de las clases dependa de una común. Al final hay un grafo de herencias y se lineariza el sistema. Hay un debate de cómo linearizar.
+Python tiene su sistema propio, pero es poco corriente heredar de tantas clases y mucho menos herencias cruzadas.
+
+super() dirige a la clase madre y permite llamar a un método de la clase madre directamente. El método xxx está definido
+en la parte madre, una parte especial y Vehiculo tiene su xxx y Coche lo que hace es lo de vehiculo, pero algo especial que no se hace
+con otros vehículos. Si el xxx de Coche quiere usar el xxx de Vehículo, entonces utilizará el super(). Se suele usar mucho con los
+inicializadores, que suelen aprovechar métodos de las clases madre.
+(
+super() se puede sustituir por el nombre de una clase. Usar super() y herencia es cuestión de mantenimiento.
+
+Clases abstractas: Aquellas clases que no se pueden instanciar, no se pueden crear objetos de ellas. Python no tiene clases abstractas.
+Se utilizan para crear esquemas para otras clases, es decir, solo para heredar.
+
+Clases finales: No se pueden heredar.
+
+MÉTODOS ESPECIALES 1:
+__len__(self)
+
+Si tenemos c=Coche(). Queremos que x=len(c) queremos que haga cierta cosa.
+Definimos __len__ de forma que len(c) y c.__len__() sean equivalentes o definir un método llamado longitud de manera que c.longitud()
+__getattr__(self,name) Si buscamos c.precio y no lo encuentra por ninguna clase herencia si has puesto __getattr__ entonces lo ejecuta y te lo devuelve
+de esta manera no salta una excepción.
+__str__ Si ponemos print(c) retorna un texto tipo objeto de clase. Si ponemos __str__ cada vez que necesite un texto asociado al objeto, va a ese método
+
+Para comparar objetos, por ejemplo, dos coches. Si tenemos coches c y d, poner c<d. Si definimos las funciones especiales __lt__() que viene de less than.
+La expresión c<d llama al __lt__ de c!, el segundo va como argumento. c<d es equivalente a c.__lt__(d)
+
+__call__ para llamar al objeto como si fuera una función c('acelera',280)...
+
+MÉTODOS ESPECIALES 2:
+___getitem__ para usar corchetes en lugar de paréntesis. Si se pone c['carburador']='Bosch 390', entonces le pasa primero 'carburador' y después 'Bosch 390'
+Cuando tenemos lista=[1 4 7] podemos hacer if x in lista, entonces se comprueba si x aparece en listas. Pero si queremos eso en nuestro objeto, es decir, que sea
+posible if x in c, se hace con __contains__.
+
+También se pueden definir, sumas, restas, productos, potenciaciones sobre instancias de clases.
+
+MÉTODOS ESPECIALES 3:
+Hay un caso especial cuando queremos iterar.
+for item in lista:
+    print(item)
+
+Queremos poder iterar en una instancia de una clase
+for item in c
+    print(item)
+
+Lo normal es tener un __iter__ que devuelve un objeto que tenga un método __next__. Lo normal es que sea la propia clase aunque podría
+haber casos en que delegues en otra.
+def __iter__(self):
+    return self
+
+def __next__(self):
+    .
+    .
+    .
+    return ... (Aquí se decide cuál debe ser el item en cada cuenta). Suele estar asociado a tener una variable que controla por donde vas,
+    pero depende de la programación)
+Llega un momento en el que quieres que termine, entonces tiene que lanzar StopIteration con un raise. El for espera un StopIteration para cortar.
+
+Hay módulos sys y os que tienen métodos que controlan el sistema o el sistema operativo.
+Presente legibles se refiere a __str__.
+

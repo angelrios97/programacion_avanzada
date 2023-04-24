@@ -1,0 +1,19 @@
+variable Robo SI NO
+padres
+0.001 0.999
+
+variable Terremoto SI NO
+padres
+0.002 0.998
+
+variable Alarma SI NO
+padres Robo Terremoto
+0.95 0.94 0.29 0.001 0.05 0.06 0.71 0.999
+
+variable Juanllama SI NO
+padres Alarma
+0.9 0.05 0.1 0.95
+
+variable Mariallama SI NO
+padres Alarma
+0.7 0.01 0.3 0.99

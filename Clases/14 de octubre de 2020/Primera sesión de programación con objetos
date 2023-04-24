@@ -1,0 +1,22 @@
+Los ejemplos están sacados de ladocumentación oficial de Python.
+En los ejemplos no hay documentación para que sea más pequeño, pero es recomendable documentar todas las clases.
+ivar se usa para los atributos de objetos que varían
+cvar se usa para los atributos de clase que no varían
+Los atributos que van sueltos como kind="canine" son atributo de clase.
+Los def __init__(self.name):... son atributos de objeto.
+
+Con e=Dog("Find") y d=Dog("Buddy"), e.kind y d.kind son canine porque solo hay un único kind. Si se cambia e.kind,
+también se cambia d.kind porque son el mismo.
+En Python se pueden crear atributos dinámicamente d.edad=12. Si quieres un objeto para guardar datos, puedes definir una
+clase del tipo
+class Cosa:
+    pass
+Y definir
+datos=Cosa()
+datos.nombre="Santander"
+datos.longitud=565956
+...
+
+Para cambiar el atributo de la clase se pone Dog.kind="pajaro" y cambia solo en los objetos para los que no se ha
+modificado el artículo.
+

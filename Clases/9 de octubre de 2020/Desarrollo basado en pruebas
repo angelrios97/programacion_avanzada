@@ -1,0 +1,99 @@
+Desarrollo dirigido por pruebas. TDD. Test Driven Development.
+· Por partes
+· Antes prueba, luego código
+· Guardar y pasar conjunto
+
+La prueba se refiere a cada elemento del programa. Se prueba cada función
+de manera independiente. Cada clase, cada método tiene que ser probado. Las
+pruebas son sistemáticas incluyendo pruebas malas, a pillar.
+No es desarrollo comprobado con pruebas, sino dirigido.
+Se preparan las pruebas antes de hacer la programación. Normalmente
+las primeras versiones del programa resuelven las primeras pruebas
+de manera correcta. Siempre se pasan todas las pruebas repetidamente.
+En programas sencillos no tiene sentido ell desarrollo dirigido por pruebas.
+No pasa nada por modificar las pruebas escritas a priori para adaptarse
+a las necesidades del programa. Hay que modificar el conjunto de pruebas.
+
+· Globales. Se prueba el programa completo.
+· Parciales. Se prueba parte del programa.
+
+Si tenemos un programa que manda correos electrónicos. Las pruebas no pueden
+mandar correos de forma masiva ni enviar los correos a un servidor web. No se suele
+se prueba con el elemento real. Normalmente esas pruebas se aislan del servicio
+externo que no se quieren bloquear.
+Se prueban todas las funcionalidades excepto el hecho de mandar correos, que no se
+mandan.
+
+#pass instrucción que no hace nada
+
+Las pruebas se pueden hacer directamente de manera manual con la instrucción assert.
+assert ordena([4,1,2])==[1,2,4]. Esta forma de hacer pruebas no es muy automatizable en
+programas grandes por lo que se han hecho paquetes estándar con utilidades para
+automatizar pruebas. El paquete unittest, viene en la distribución estándar de Python y tiene
+esas funcionalidades.
+
+Por cada programa, se crea un programa test en el módulo que tiene por cada función
+una función de prueba que chequea la función.
+
+import unittest
+class Prueba(unittest.TestCase):
+   def test_nombrefuncion(self): #self es un requerimiento sintáctico
+      self.assertEquals(nombrefuncion(x),y)
+      ...mira dir(unittest.TestCase) #aquí hay una sucesión de líneas con diferentes pruebas
+  help(unittest.TestCase.assertAlmostEqual)
+unittest.main()
+
+Como es un paquete estándar de Python, está su documentación en la oficial.
+También se puede verificar que cuando haya un error, retorne ese error como debe con
+assertRaises(...)
+assertAlmostEqual sirve para evaluar igualdades por ejemplo en coma flotante donde dependen
+de la exactitud. Por defecto los decimales de redondeo son 7.
+
+
+#assert es una función que sale bien si se cumple la condición y si alguno falla, casca
+salta error en la línea correspondiente.
+
+El propio python tiene un comando interno que retorna las funciones disponibles.
+import unittest
+dir(unittest)
+help(unittest.TestCase.assert.NotIn)
+help(print)
+
+El unittest.main() arranca todas las funciones. Si se tienen dos clases, ejecuta doto también.
+Puede ser que a veces se tienen que crear unos ficheros previos y también comprobar el fichero.
+
+Al final de todas las pruebas hay que eliminar todos los ficheros y deshacer todos los cambios
+y cualquier operacion necesaria para las pruebas.
+
+El unittest puede resultar un poco pesado cuando se implementa. Hay varias alternativas.
+Por ejemplo, nose y py.test, pero no vienen incluídos en la implementación estándar de Python.
+Están justificados cuando los problemas son mucho más grandes y complejos. El unittest se queda
+un poco corto y pesado.
+
+Documentación basada en pruebas. Hay un paquete que se llama doctest. Se genera un fichero
+de texto en el que cuentas
+
+def mifuncion(x):
+    """Esta función resuelve la conjetura de Goldbach para el caso de un universo x previendo el  caso de que x no esté acotado y que su dimensión sea negativa
+    ejemplo de duso:
+    >>>mifuncion([4])
+    'galletas'
+    Si además le mandas un texto, se lo come
+    >>>mifuncion('macarrones')
+    'que rico'
+    """
+
+Grupos de pruebas se suelen hacer con nose o pytest.
+Pruebas mediante interfraces gráficas con paquetes como selenium
+
+def romanum(textorom):
+    valores={'M':1000,'D':500,'C':100...}
+    num=0
+    for letra in textorom:
+      num+=valores[letra]
+    return num
+prueba letras sueltas
+prueba alguna combinación
+prueba letras no existentes
+prueba texto vacío
+prueba sin argumentos

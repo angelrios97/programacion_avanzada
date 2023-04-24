@@ -1,0 +1,31 @@
+variable E Funciona Fallo1 Fallo2
+padres
+0 0 0
+
+variable A Funciona Fallo1 Fallo2
+padres
+0 0 0
+
+variable F Funciona Fallo1 Fallo2
+padres A E
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+variable D Funciona Fallo1 Fallo2
+padres F
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+variable C Funciona Fallo1 Fallo2
+padres E A D
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+variable Motor Funciona Fallo
+padres C
+0 0 0 0 0 0 0 0 0
+
+variable Bomba Funciona Fallo
+padres Motor
+0 0 0 0
+
+variable Tanque Funciona Fallo
+padres Bomba
+0 0 0 0

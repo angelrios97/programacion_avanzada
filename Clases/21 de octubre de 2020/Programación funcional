@@ -1,0 +1,84 @@
+PROGRAMACIÓN FUNCIONAL.
+Aproximadamente to,do son funciones.
+-Procedimientos
+-Variables
+-Argumentos y retornos...
+
+Por ejemplo, la asignación x=2 no sería programación funcional, debería ser una función hacer(x,2) que haga a x igual a 2.
+La gente que hace programación funcional afirma que si no la haces, se introducen muchos errores. Es discutible, pero sí
+es cierto que la programación funcional aporta herramientas que pueden ser útiles para otro tipo de paradigmas. La programación
+funcional no es intuitiva solo porque no estamos acostumbrados.
+
+Existen sintaxis para definir funciones pequeñas como las minifunciones lambda anónimas.
+lambda x,y: x+y
+Tienen un único retorno.
+
+import functool Para fracciones parciales que permite definir funciones a partir de otras dando valores constantes a alguna
+de sus variables
+
+import operator Para utilizar operadores como funciones.
+a*b se transformaría en operator.mul(a,b)
+Esto permitiría utilizar functool con los operadores ya que functool solo sirve para funciones.
+
+Hay un objeto introducido en la programación funcional que son los iteradores. Ya hemos visto que existe for y que se puede iterar
+sobre objetos de clases con iter y next.
+
+¿En qué condiciones una función puede llamarse a sí misma?
+· Si la función entra en bucle. Se puede ver que una función no entra en bucle llamándose a sí misma si hay un bloque condicional
+por ejemplo con un if o un try en donde se da la condición y en ese bloque no hay recursividad.
+
+def paquito(x):
+    if x<0:
+        return x+x;
+    else:
+        paquito(x-1):
+
+¿Cómo se define una función dentro de otra? En el bloque de la función, se pone el mismo nombre dentro.
+def paquito(x):
+    def paco(z):
+        return z+1
+    return paco
+paco es una función que está dentro de la función y se retorna como retorno de la función que la contiene definida.
+
+¿Puede una función estar en una lista? Sí, se puede.
+¿Puede devolverse una función como retorno? Sí, lo hemos hecho con paquito y paco.
+
+¿Qué pasa si iteras un map dos veces seguidas?
+
+for linea in fichero:
+    cosas
+    cosas
+    cosas
+for linea in fichero:
+    cosas
+    cosas
+    cosas
+¿Qué pasa la segunda vez? La posición de lectura del fichero está en el final, entonces el fichero "se ha agotado" y no
+se puede seguir recorriendo. Con las funciones de itertools pasa lo mismo, o se redefine o no se pueden volver a iterar
+porque el puntero está al final.
+
+HASH.
+Suponemos que estamos guardando nombres de usuario y contraseñas.
+paco            soygrande
+pepe            123
+maricarmen      abracadabra
+
+Un uso de las funciones hash es que nosotros no guardamos una contraseña, sino una función de ella, por ejemplo, el coseno.
+paco            cos(soygrande)=37p
+pepe            cos(123)=0.82
+maricarmen      cos(abracadabra)=a694
+
+Cuando el usuario teclea, no teclea el coseno, sino la contraseña. El asaltante necesita las contraseñas porque no conoce la
+función la inversa.
+Se busca una función llamad hash muy difícil de invertir.
+paco            hash(soygrande)
+pepe            hash(123)
+maricarmen      hash(abracadabra)
+
+La función hash no debe tener colisiones. Debe haber una muy baja probabilidad de que hash(x) != hash(y) ---> x != y. Python tiene
+implementada de serie una fucnión hash.
+
+
+
+posiciones = [5, 6, 8]
+enumerate(posiciones)=[(0,1), (1, 6), (2, 8)]

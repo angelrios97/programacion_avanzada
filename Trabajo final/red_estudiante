@@ -1,0 +1,19 @@
+variable D 0 1
+padres
+0.6 0.4
+
+variable I 0 1
+padres
+0.7 0.3
+
+variable G 1 2 3
+padres I D
+0.3 0.05 0.9 0.5 0.4 0.25 0.08 0.3 0.3 0.7 0.02 0.2
+
+variable S 0 1
+padres I
+0.95 0.2 0.05 0.8
+
+variable L 0 1
+padres G
+0.1 0.4 0.99 0.9 0.6 0.01
